@@ -19,6 +19,10 @@ const todoList = [
     text: "Clean Room",
     completed: true,
   },
+  {
+    text: "Food Shopping",
+    completed: true,
+  },
 ];
 
 const todosLeft = todoList.filter(function (todo) {
