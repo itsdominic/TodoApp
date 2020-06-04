@@ -42,3 +42,7 @@ todoList.forEach(function (todo) {
 document.querySelector("#add-todo").addEventListener("click", function () {
   console.log("A new todo has been added");
 });
+
+document.querySelector("todo-text").addEventListener("input", function (e) {
+  console.log(e.target.value);
+});
