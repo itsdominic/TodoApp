@@ -27,11 +27,15 @@ const todoList = [
 
 const filters = {
   searchText: "",
+  hideCompleted: false,
 };
 
 const renderTodos = function (todoList, filters) {
   const filteredTodos = todoList.filter(function (todo) {
-    return todo.text.toLowerCase().includes(filters.searchText.toLowerCase());
+    const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase());
+    const hideCompletedMatch = !filters.hideCompleted || !todo.completed;
+
+    return searchTextMatch && hideCompletedMatch;
   });
 
   const todosLeft = filteredTodos.filter(function (todo) {
@@ -66,4 +70,9 @@ document.querySelector("#add-todo").addEventListener("submit", function (e) {
   });
   renderTodos(todoList, filters);
   e.target.elements.addTodo.value = " ";
+});
+
+document.querySelector("#completed").addEventListener("change", function (e) {
+  filters.hideCompleted = e.target.checked;
+  renderTodos(todoList, filters);
 });
