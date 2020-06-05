@@ -53,21 +53,17 @@ const renderTodos = function (todoList, filters) {
 
 renderTodos(todoList, filters);
 
-// todoList.forEach(function (todo) {
-//   const todoitem = document.createElement("p");
-//   todoitem.textContent = todo.text;
-//   document.querySelector("body").appendChild(todoitem);
-// });
-
-document.querySelector("#add-todo").addEventListener("click", function () {
-  console.log("A new todo has been added");
-});
-
-document.querySelector("#todo-text").addEventListener("input", function (e) {
-  console.log(e.target.value);
-});
-
 document.querySelector("#search-text").addEventListener("input", function (e) {
   filters.searchText = e.target.value;
   renderTodos(todoList, filters);
+});
+
+document.querySelector("#add-todo").addEventListener("submit", function (e) {
+  e.preventDefault();
+  todoList.push({
+    text: e.target.elements.addTodo.value,
+    completed: false,
+  });
+  renderTodos(todoList, filters);
+  e.target.elements.addTodo.value = " ";
 });
