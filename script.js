@@ -1,33 +1,15 @@
-const todoList = [{
-    text: "Walk Dog",
-    completed: true,
-  },
-  {
-    text: "Wash Car",
-    completed: false,
-  },
-  {
-    text: "File Expenses",
-    completed: false,
-  },
-  {
-    text: "Wash Hair",
-    completed: false,
-  },
-  {
-    text: "Clean Room",
-    completed: true,
-  },
-  {
-    text: "Food Shopping",
-    completed: true,
-  },
-];
+let todoList = [];
 
 const filters = {
   searchText: "",
   hideCompleted: false,
 };
+
+const todoListJSON = localStorage.getItem("todoList")
+
+if (todoListJSON !== null) {
+  todoList = JSON.parse(todoListJSON)
+}
 
 const renderTodos = function (todoList, filters) {
   const filteredTodos = todoList.filter(function (todo) {
@@ -109,6 +91,8 @@ document.querySelector("#add-todo").addEventListener("submit", function (e) {
     text: e.target.elements.addTodo.value,
     completed: false,
   });
+
+  localStorage.setItem("todoList", JSON.stringify(todoList))
 
   // RendersTodos 
   renderTodos(todoList, filters);
