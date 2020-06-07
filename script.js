@@ -123,6 +123,6 @@ document.querySelector("#completed").addEventListener("change", function (e) {
   // Changes filters object of hideCompleted to depend on if the box is checked or not 
   filters.hideCompleted = e.target.checked;
 
-  // RendersTodos
+  // RendersTodos list
   renderTodos(todoList, filters);
 });
