@@ -5,8 +5,11 @@ const filters = {
   hideCompleted: false,
 };
 
+
+// create a variable which reads the items from local storage and stores them  
 const todoListJSON = localStorage.getItem("todoList")
 
+// if there are items in local storage it converts back to a JS object using parse 
 if (todoListJSON !== null) {
   todoList = JSON.parse(todoListJSON)
 }
@@ -92,6 +95,8 @@ document.querySelector("#add-todo").addEventListener("submit", function (e) {
     completed: false,
   });
 
+  // setting localstorage with key todoList 
+  // our value the todoList which is converted to a string 
   localStorage.setItem("todoList", JSON.stringify(todoList))
 
   // RendersTodos 
